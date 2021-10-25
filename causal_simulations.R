@@ -5,11 +5,7 @@ require(tidyverse)
 theme_set(theme_classic())
 setwd("~/Documents/Analytics/R/Causal Modelling Presentation")
 
-# d-separation plots
-a <- 0.7
-cols <- c( col.alpha(1,a) , col.alpha(2,a) )
-
-# pipe
+# Sleep->Alertness->Test Results pipe example
 
 N <- 1000
 X <- rnorm(N)
@@ -55,19 +51,7 @@ dat1 %>% rename(test_result = Y, sleep = X, alertness = Z) %>%
   lm(test_result ~ sleep, data = .) %>% summary
 
 
-# fork
-
-N <- 1000
-Z <- rbern(N)
-X <- rnorm(N,2*Z-1)
-Y <- rnorm(N,(2*Z-1))
-
-plot( X , Y , col=cols[Z+1] , pch=16 )
-abline(lm(Y[Z==1]~X[Z==1]),col=2,lwd=3)
-abline(lm(Y[Z==0]~X[Z==0]),col=1,lwd=3)
-abline(lm(Y~X),lwd=3,lty=3)
-
-# collider
+# Grandparent-grandchildren collider example
 
 N <- 1000
 U <- rnorm(N)
@@ -127,8 +111,4 @@ dat2 %>% lm(C ~ G * P, data = .) %>% summary
 pdf(file = "figures/grandparents3.pdf", 6, 4)
 p5
 dev.off()
-
-
-
-
 
