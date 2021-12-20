@@ -1,7 +1,8 @@
 # Causality Presentation
 
-Talk to CodeR-TSV and Cairns communities on October 25th, 2021.
-Heavily inspired by Richard McElreath's youtube videos.
+Presentation for the CodeR-TSV and Cairns TropR conding clubs on October 25th, 2021. 
 
-Find the pdf slides for the presentation above.
+Find the pdf slides for the presentation above or watch the presentation **[here!](https://www.youtube.com/watch?v=Xt_af0Z1gaU)**
+
+
  
