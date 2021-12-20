@@ -1,4 +1,4 @@
-# Causality Presentation
+# An introduction to causality in statistical modelling
 
 Presentation for the CodeR-TSV and Cairns TropR conding clubs on October 25th, 2021. 
 
