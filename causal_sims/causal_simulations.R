@@ -1,7 +1,8 @@
-# Examples adapted from: https://github.com/rmcelreath/causal_salad_2021/blob/main/1_causal_salad.r
+# Examples 1 and 2 adapted from: https://github.com/rmcelreath/causal_salad_2021/blob/main/1_causal_salad.r
 
 require(rethinking)
 require(tidyverse)
+# Set default theme for plots:
 ggplot2::theme_set(ggplot2::theme_classic() + 
                      theme(panel.border = element_rect(fill = NA, colour = "black", linewidth = rel(1)),
                            panel.background = element_rect(fill="transparent"),
@@ -11,13 +12,13 @@ ggplot2::theme_set(ggplot2::theme_classic() +
                            legend.box.background = element_rect(fill='transparent', color = "transparent"),
                            plot.title = element_text(hjust = 0.5),
                            axis.text = element_text(color = "black"),
-                           strip.text.y = element_text(angle = 0),
-                           axis.text.x.top = element_blank(),
-                           axis.ticks.x.top = element_blank(),
-                           axis.line.x.top = element_blank(),
-                           axis.text.y.right = element_blank(),
-                           axis.ticks.y.right = element_blank(),
-                           axis.line.y.right = element_blank()))
+                           strip.text.y = element_text(angle = 0)))
+                           # axis.text.x.top = element_blank(),
+                           # axis.ticks.x.top = element_blank(),
+                           # axis.line.x.top = element_blank(),
+                           # axis.text.y.right = element_blank(),
+                           # axis.ticks.y.right = element_blank(),
+                           # axis.line.y.right = element_blank()))
 
 #### Example 1: Sleep ####
 # Sleep->Alertness->Test Results pipe example
