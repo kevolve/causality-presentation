@@ -6,4 +6,4 @@ Find the pdf slides for the presentation above, or watch the presentation **[her
 
 Updated script and presentation for the Riginos Lab on 3 Nov 2023 (no recording available).
 
-Updated script and presentation for the UQ Coding Club on ## Jan 2025
+Updated script and presentation for the UQ Coding Club on 28 Jan 2025.
