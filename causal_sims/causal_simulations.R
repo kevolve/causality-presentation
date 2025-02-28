@@ -224,7 +224,7 @@ P <- rnorm(N, 2*U + G)
 P_bn <- factor(as.numeric(cut_number(P,9)))
 C <- rnorm(N, 4*U + P + G)
 
-dat2 <- tibble(G, P, C, U, P_bn, U_bn)
+dat3 <- tibble(G, P, C, U, P_bn, U_bn)
 
 ##### Stats #####
 (parent_only_mod <- lm(C ~ P, data = dat2))
@@ -240,27 +240,28 @@ MuMIn::AICc(parent_only_mod,
   mutate("ΔAICc" = AICc - AICc[1])
 # Best model is grandparent + parent as explanatory factor
 
-
-(p1 <- dat2 %>%
+##### Data plots #####
+(p1 <- dat3 %>%
     ggplot(aes(P, C)) +
     geom_point(color = "#96B0E1", alpha = 0.5) +
     labs(x = "Parents' education level", y = "Child's education level") +
     theme(axis.text = element_blank(),
           axis.ticks = element_blank()) +
     geom_smooth(method = "lm", formula = "y~x", se=F, linetype = "solid", color = "black"))
-ggsave("grandparents1.pdf", width = 4, height = 3, plot = p1)
+ggsave("plots/grandparents1.pdf", width = 4, height = 3, plot = p1)
+summary(parent_only_mod)
 
-
-(p2 <- dat2 %>%
+(p2 <- dat3 %>%
     ggplot(aes(G, C)) +
     geom_point(color = "turquoise", alpha = 0.5) +
     labs(x = "Grandparents' education level", y = "Child's education level") +
     theme(axis.text = element_blank(),
           axis.ticks = element_blank()) +
     geom_smooth(method = "lm", formula = "y~x", se=F, linetype = "solid", color = "black"))
-ggsave("grandparents2.pdf", width = 4, height = 3, plot = p2)
+ggsave("plots/grandparents2.pdf", width = 4, height = 3, plot = p2)
+summary(grandparent_only_mod)
 
-(p3 <- dat2 %>%
+(p3 <- dat3 %>%
   ggplot(aes(G, C)) +
   geom_point(aes(color = P_bn), alpha = 0.5) +
   scale_color_viridis_d(breaks = c(1,5,9), labels = c("Low", "Medium", "High"),
@@ -270,12 +271,12 @@ ggsave("grandparents2.pdf", width = 4, height = 3, plot = p2)
   theme(axis.text = element_blank(),
         axis.ticks = element_blank()) +
   geom_smooth(aes(color = P_bn, group = P_bn), method = "lm", formula = "y~x", se=F, linetype = "solid"))
-ggsave("grandparents3.pdf", width = 4.5, height = 3, plot = p3)
+ggsave("plots/grandparents3.pdf", width = 4.5, height = 3, plot = p3)
+summary(grandparent_parent_mod)
+summary(grandparent_x_parent_mod)
 
 
-dat2 %>% lm(C ~ G + P, data = .) %>% summary
-
-(p4 <- dat2 %>%
+(p4 <- dat3 %>%
 		ggplot(aes(G, C)) +
 		geom_point(aes(fill = P_bn, stroke = (as.numeric(U_bn)-1)), shape = 21, alpha = 0.5, color = "red") +
     geom_smooth(aes(color = P_bn, group = paste0(P_bn,U_bn)), method = "lm", formula = "y~x", se=F, linetype = "solid",
@@ -291,9 +292,8 @@ dat2 %>% lm(C ~ G + P, data = .) %>% summary
 		labs(x = "Grandparents' education level", fill = "Parents' education\nlevel", color = "Neighbhourhood", y = "Child's education level") +
 		theme(axis.text = element_blank(),
 		      axis.ticks = element_blank()))
-ggsave("grandparents4.pdf", width = 5, height = 3, plot = p4)
-
-dat2 %>% lm(C ~ G + P + U, data = .) %>% summary
+ggsave("plots/grandparents4.pdf", width = 5, height = 3, plot = p4)
+summary(best_model)
 
 
 #### Example 4: Berkeley Admissions (incomplete) ####
